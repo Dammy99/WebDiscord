@@ -1,0 +1,25 @@
+.sidebar {
+  position: relative;
+  height: 100dvh;
+  width: 250px;
+  padding: 0;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  .text {
+    padding-top: 20px;
+    font-size: 25px;
+  }
+  .users {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .user {
+      margin: 15px 0 0 0;
+      font-size: 20px;
+      color: greenyellow;
+    }
+  }
+}
