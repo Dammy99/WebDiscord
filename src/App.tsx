@@ -6,7 +6,7 @@ import {
   HubConnectionBuilder,
   LogLevel,
 } from "@microsoft/signalr";
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface Message {
   user: string;
