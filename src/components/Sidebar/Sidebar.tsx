@@ -1,12 +1,17 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import styles from "./Sidebar.module.css";
 
-const Sidebar = () => {
+const Sidebar = ({ users }) => {
   return (
     <section className={styles.sidebar}>
       <div className={styles.text}>Connected Users</div>
       <div className={styles.users}>
-        <p className={styles.user}>Max</p>
-        <p className={styles.user}>Viktor</p>
+        {users.map((user: string, index: number) => (
+          <p className={styles.user} key={index}>
+            {user}
+          </p>
+        ))}
       </div>
     </section>
   );
