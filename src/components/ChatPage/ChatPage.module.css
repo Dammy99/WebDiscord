@@ -1,0 +1,51 @@
+.page {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-column-gap: 3px;
+  .body {
+    .leave {
+      width: 100%;
+      color: red;
+    }
+    max-height: 100dvh;
+    display: grid;
+    grid-template-rows: 5% 84% 8%;
+    grid-row-gap: 8px;
+    .chat {
+      display: flex;
+      justify-content: right;
+      align-items: start;
+      /* border-radius: 50px; */
+      width: 100%;
+      background-color: gainsboro;
+      overflow-y: auto;
+      max-height: 100%;
+      .content {
+        max-width: 50%;
+        position: relative;
+        padding: 20px;
+        justify-content: end;
+        display: grid;
+      }
+    }
+    .message {
+      padding: 10px;
+      /* border-radius: 20px; */
+      background-color: rgb(49, 206, 206);
+      display: grid;
+      grid-template-columns: minmax(0, 10fr) 0.5fr;
+      ::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      .input {
+        outline: none;
+        resize: none;
+        background-color: aliceblue;
+        padding: 5px 20px 5px 20px;
+        border-radius: 50px;
+      }
+    }
+  }
+}
