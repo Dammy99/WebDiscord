@@ -1,17 +1,19 @@
 import { useState } from "react";
 import styles from "./Home.module.css";
-import { useAppSelector } from "../../config/hooks";
-import { selectPeer } from "../../Slices/peerSlice";
-import { selectUserId } from "../../Slices/userIdSlice";
+import { User } from "../../App";
 interface Props {
   joinroom: (user: string, room: string) => Promise<void>;
+  setCurrentUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
-const Home = ({ joinroom }: Props) => {
+const Home = ({ joinroom, setCurrentUser }: Props) => {
   const [user, setUser] = useState<string>("");
   const [room, setRoom] = useState<string>("");
-  const userPeer = useAppSelector(selectPeer);
-  const userId = useAppSelector(selectUserId);
+
+  const handleSetUser = () => {
+    setCurrentUser({ user, room });
+  };
+
   return (
     <form
       onSubmit={(e) => {
@@ -30,17 +32,12 @@ const Home = ({ joinroom }: Props) => {
         onChange={(e) => setRoom(e.target.value)}
         placeholder="ChatName"
       />
-      <button type="submit" disabled={!user || !room}>
-        Join
-      </button>
       <button
-        type="button"
-        onClick={() => {
-          console.log(userPeer);
-          console.log(userId);
-        }}
+        onClick={() => handleSetUser()}
+        type="submit"
+        disabled={!user || !room}
       >
-        qweqwe
+        Join
       </button>
     </form>
   );

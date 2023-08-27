@@ -21,6 +21,7 @@ function App() {
   const [connectionn, setConnection] = useState<HubConnection>();
   const [messages, setMessages] = useState<Message[]>([]);
   const [users, setUsers] = useState<User[]>([]);
+  const [currentUser, setCurrentUser] = useState<User>({ room: "", user: "" });
 
   const connection = new HubConnectionBuilder()
     .withUrl("https://localhost:7000/chat")
@@ -78,10 +79,11 @@ function App() {
             closeConnection={closeConnection}
             users={users}
             connectionHubInvoke={connectionn}
+            currentUser={currentUser}
           />
         </div>
       ) : (
-        <Home joinroom={joinroom} />
+        <Home joinroom={joinroom} setCurrentUser={setCurrentUser} />
       )}
     </>
   );

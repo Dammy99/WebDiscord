@@ -2,23 +2,28 @@ import { RefObject, useEffect, useRef, useState } from "react";
 import styles from "./CallChat.module.css";
 import { HubConnection } from "@microsoft/signalr";
 import Peer from "peerjs";
+import { User } from "../../App";
 
 interface ICallProps {
   connectionHubInvoke: HubConnection | undefined;
   setIsCall: React.Dispatch<React.SetStateAction<boolean>>;
+  currentUser: User;
 }
 
-const CallChat = ({ connectionHubInvoke, setIsCall }: ICallProps) => {
+const CallChat = ({
+  connectionHubInvoke,
+  setIsCall,
+  currentUser,
+}: ICallProps) => {
   const [isCameraOff, setIsCameraOff] = useState(true);
   const [newLocalStream, setNewLocalStream] = useState<MediaStream>();
   let localStream: MediaStream;
   const divchik: RefObject<HTMLDivElement> = useRef(null);
-  const room = "123";
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Peers: any = {};
   let user = "";
-
+  const room = currentUser.room;
   const myPeer: Peer = new Peer();
 
   useEffect(() => {

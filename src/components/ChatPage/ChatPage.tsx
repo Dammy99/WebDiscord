@@ -17,6 +17,7 @@ interface Props {
   closeConnection: () => Promise<void>;
   users: User[];
   connectionHubInvoke: HubConnection | undefined;
+  currentUser: User;
 }
 
 const ChatApp = ({
@@ -25,6 +26,7 @@ const ChatApp = ({
   closeConnection,
   users,
   connectionHubInvoke,
+  currentUser,
 }: Props) => {
   const [message, setMessage] = useState<string>("");
   const [isCall, setIsCall] = useState<boolean>(false);
@@ -36,6 +38,7 @@ const ChatApp = ({
       <CallChat
         connectionHubInvoke={connectionHubInvoke}
         setIsCall={setIsCall}
+        currentUser={currentUser}
       />
     );
   };
