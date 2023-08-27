@@ -1,7 +1,10 @@
 import styles from "./ChatPage.module.css";
 import Sidebar from "../Sidebar/Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../App";
+import CallChat from "../CallChat/CallChat";
+import { HubConnection } from "@microsoft/signalr";
+// import { HubConnection } from "@microsoft/signalr";
 
 interface Messages {
   user: string;
@@ -13,27 +16,50 @@ interface Props {
   sendMessage: (message: string) => Promise<void>;
   closeConnection: () => Promise<void>;
   users: User[];
+  connectionHubInvoke: HubConnection | undefined;
 }
 
-const ChatApp = ({ messages, sendMessage, closeConnection, users }: Props) => {
+const ChatApp = ({
+  messages,
+  sendMessage,
+  closeConnection,
+  users,
+  connectionHubInvoke,
+}: Props) => {
   const [message, setMessage] = useState<string>("");
-  // console.log(messageRef);
-  // useEffect(() => {
-  //   if (messageRef && messageRef.current) {
-  //     const { scrollHeight, clientHeigth } = messageRef.current;
-  //     messageRef.current?.scrollTo({
-  //       left: 0,
-  //       top: scrollHeight - clientHeigth,
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // }, [messages]);
+  const [isCall, setIsCall] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [componentInstance, setComponentInstance] = useState<any>();
 
+  const addNewComponent = () => {
+    setComponentInstance(
+      <CallChat
+        connectionHubInvoke={connectionHubInvoke}
+        setIsCall={setIsCall}
+      />
+    );
+  };
+
+  useEffect(() => {
+    if (!isCall) {
+      addNewComponent();
+    }
+  }, [isCall]);
   return (
     <div className={styles.page}>
+      {isCall && componentInstance}
       <Sidebar users={users} />
       <section className={styles.body}>
         <div>
+          <button
+            className={styles.leave}
+            onClick={() => {
+              setIsCall(!isCall);
+            }}
+            color="red"
+          >
+            Дзвінок в групі
+          </button>
           <button
             className={styles.leave}
             color="red"

@@ -11,13 +11,18 @@
   },
   "dependencies": {
     "@microsoft/signalr": "^7.0.10",
+    "@reduxjs/toolkit": "^1.9.5",
+    "peerjs": "^1.4.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.15.0",
+    "redux": "^4.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/simple-peer": "^9.11.5",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
@@ -25,6 +30,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-node-polyfills": "^0.11.2"
   }
 }

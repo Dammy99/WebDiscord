@@ -7,11 +7,12 @@ const Sidebar = ({ users }) => {
     <section className={styles.sidebar}>
       <div className={styles.text}>Connected Users</div>
       <div className={styles.users}>
-        {users.map((user: string, index: number) => (
-          <p className={styles.user} key={index}>
-            {user}
-          </p>
-        ))}
+        {typeof users == typeof {} &&
+          users.map((user: string, index: number) => (
+            <p className={styles.user} key={index}>
+              {user}
+            </p>
+          ))}
       </div>
     </section>
   );
